@@ -5,7 +5,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Copy project to app directory
-COPY pokedex /app
+COPY . /app
 WORKDIR /app
 
 # Install dependencies
