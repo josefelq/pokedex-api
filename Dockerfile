@@ -16,5 +16,8 @@ RUN apt-get update && apt install -y netcat
 RUN sed -i 's/\r$//g' /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
+# Setup static file directory
+RUN mkdir staticfiles
+
 # Run entrypoint
 ENTRYPOINT ["/app/entrypoint.sh"]
