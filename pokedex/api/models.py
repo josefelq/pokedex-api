@@ -92,7 +92,7 @@ class Pokemon(models.Model):
     height_cm = models.IntegerField()
     weight_kg = models.IntegerField()
     type = models.CharField(choices=TYPE_CHOICES, max_length=20, default=BUG)
-    description = models.TextField()
+    description = models.CharField(max_length=255)
     discovered_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE
     )

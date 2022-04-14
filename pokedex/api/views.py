@@ -1,6 +1,8 @@
-from rest_framework import viewsets, mixins
+from rest_framework import viewsets, mixins, views
+from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .permissions import IsOwnerOrReadOnly
+import requests
 from .models import Pokemon
 from .serializers import PokemonSerializer, RegisterSerializer
 
@@ -36,3 +38,14 @@ class RegisterViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
     permission_classes = [AllowAny]
     queryset = CustomUser.objects.all()
     serializer_class = RegisterSerializer
+
+
+class GetRandomNumberView(views.APIView):
+    def get(self, request):
+        res = requests.get(
+            "http://www.randomnumberapi.com/api/v1.0/random?min=1&max=1000&count=1"
+        )
+        json_data = res.json()
+        if res.ok:
+            json_data = {"data": json_data[0]}
+        return Response(json_data, status=res.status_code)
