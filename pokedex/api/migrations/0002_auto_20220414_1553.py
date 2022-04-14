@@ -10,20 +10,27 @@ def prefill_pokemons(apps, schema_editor):
     CustomUser = apps.get_model("api", "CustomUser")
 
     user = CustomUser.objects.create(
-        email="test@gmail.com", password=make_password("TestPassword123!!")
+        email="ash@kanto.com", password=make_password("ILovePokemons!!1")
     )
 
     for id in range(51):
         r = requests.get(f"https://pokeapi.co/api/v2/pokemon/{id}/")
         if r.ok:
+            # Parse fields
             pokemon = r.json()
             name = pokemon["name"]
+            weight_kg = pokemon["weight"] / 10
+            height_cm = pokemon["height"] * 10
+            type = (pokemon["types"][0]["type"]["name"]).upper()
+            description = f"A pokemon named {name}"
+
+            # Store pokemon
             data = {
                 "name": name,
-                "height_cm": pokemon["height"] * 10,
-                "weight_kg": pokemon["weight"] / 10,
-                "type": (pokemon["types"][0]["type"]["name"]).upper(),
-                "description": f"A pokemon named {name}",
+                "height_cm": height_cm if height_cm > 0 else 1,
+                "weight_kg": weight_kg if weight_kg > 0 else 1,
+                "type": type,
+                "description": description,
                 "discovered_by": user,
             }
             Pokemon.objects.create(**data)
