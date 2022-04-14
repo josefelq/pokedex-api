@@ -1,10 +1,19 @@
+
 # Pokedex API
 
-Pokedex API is a fully featured RESTful API for tracking your favorite Pokemons! To get started as fast as possible make sure you have the following requirements checked out:
+Pokedex API is a fully featured RESTful API that tracks your favorite Pokemons! To get started as fast as possible make sure you have the following requirements checked out:
 - OS: Windows (WSL2) or Linux distro
  - Docker v20.10.12+
  - Docker Compose v2.2.3+
 
+## Features
+
+ - JWT Authentication
+ - CRUD operations on pokemons (includes private and public lists)
+ - Random number endpoint
+ - Unit testing
+ - Swagger Docs
+ - Production environment using NGINX + Gunicorn.
 
 ## Installation
 
