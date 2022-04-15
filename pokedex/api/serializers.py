@@ -22,6 +22,21 @@ class PokemonSerializer(serializers.ModelSerializer):
         validated_data["discovered_by"] = self.context["request"].user
         return Pokemon.objects.create(**validated_data)
 
+    class Meta:
+        model = Pokemon
+        exclude = ["discovered_by"]
+
+class PokemonUpdateSerializer(serializers.ModelSerializer):
+    def validate_height_cm(self, value):
+        if value <= 0:
+            raise serializers.ValidationError("Height in cm must be a positive number")
+        return value
+
+    def validate_weight_kg(self, value):
+        if value <= 0:
+            raise serializers.ValidationError("Weight in kg must be a positive number")
+        return value
+
     def update(self, instance, validated_data):
         instance.description = validated_data.get("description", instance.description)
         instance.height_cm = validated_data.get("height_cm", instance.height_cm)
@@ -32,7 +47,8 @@ class PokemonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Pokemon
-        exclude = ["discovered_by"]
+        exclude = ["discovered_by", "name"]
+
 
 
 class RegisterSerializer(serializers.ModelSerializer):

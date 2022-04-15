@@ -21,7 +21,7 @@ Pokedex API is a fully featured RESTful API that tracks your favorite Pokemons! 
 
 2. Select an environment and use the commands provided in that section, you can choose **Development** OR **Production**. To get up and running as soon as possible, use **Development**.
 
-### Development
+### For Development
 
 To spin up the containers:
 
@@ -46,30 +46,7 @@ To remove all containers and their associated volumes:
 
 
 
-### Production
-In case you want to run a production ready environment in your local system, create two files on the root of the project (where this README.md is located) with their corresponding values:
-
- 1. **.env.prod**
- ```
-  SECRET_KEY=django-insecure-%yt)i8)#&i@@pxn$!j$53#d)-c17u^)_8cy30%9vwy+9!s*j9b
-  DEBUG=0
-  DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
-  SQL_ENGINE=django.db.backends.postgresql
-  SQL_DATABASE=pokedex_db
-  SQL_USER=ash
-  SQL_PASSWORD=thisismypokedex
-  SQL_HOST=db
-  SQL_PORT=5432
-  DATABASE=postgres
-  ```
-  2. **.env.prod.db**
-  ```
-	POSTGRES_DB=pokedex_db
-	POSTGRES_USER=ash
-	POSTGRES_PASSWORD=thisismypokedex
-  ```
-
-In case you want to use a different database name, user or password, remember that their values must be the same in each file, i.e. POSTGRES_DB = SQL_DATABASE. 
+### For Production
 
 To spin up the containers:
 

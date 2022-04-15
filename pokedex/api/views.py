@@ -4,7 +4,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from .permissions import IsOwnerOrReadOnly
 import requests
 from .models import Pokemon
-from .serializers import PokemonSerializer, RegisterSerializer
+from .serializers import PokemonSerializer, RegisterSerializer, PokemonUpdateSerializer
 
 from django.contrib.auth import get_user_model
 
@@ -28,10 +28,16 @@ class PokemonViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing pokemons.
     """
+    
 
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Pokemon.objects.all().order_by("-created_at")
-    serializer_class = PokemonSerializer
+
+    def get_serializer_class(self):
+        if self.action == "update" or self.action == "partial_update":
+            return PokemonUpdateSerializer
+
+        return PokemonSerializer
 
 
 class RegisterViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
