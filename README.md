@@ -17,7 +17,7 @@ Pokedex API is a fully featured RESTful API that tracks your favorite Pokemons! 
 
 ## Notes
 - For **POST**, **PUT**, **PATCH** methods a Bearer Token is required: register then login and add the access_token provided to authorization header.
-- Valid types for pokemon can be seen here: https://pokemon.fandom.com/wiki/Types. All uppercase.
+- Valid types for pokemon can be seen here: https://pokemon.fandom.com/wiki/Types. All uppercase. 
 
 ## Installation
 
@@ -62,7 +62,7 @@ If this is your first time running this environment, you will have to run migrat
 
 At this point you can start interacting with the API, please view the swagger documentation on: http://localhost:1337/docs/
 
-To collect static files (in case you want to see the Django admin):
+To collect static files:
 
     docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
 
