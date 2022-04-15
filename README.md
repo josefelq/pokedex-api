@@ -17,13 +17,15 @@ Pokedex API is a fully featured RESTful API that tracks your favorite Pokemons! 
 
 ## Notes
 - For **POST**, **PUT**, **PATCH** methods a Bearer Token is required: register then login and add the access_token provided to authorization header.
-- Valid types for pokemon can be seen here: https://pokemon.fandom.com/wiki/Types. All uppercase. 
+- Valid types for pokemon can be seen here: https://pokemon.fandom.com/wiki/Types or in the enum section of the swagger docs. All uppercase. 
 
 ## Installation
 
  1. Clone the repository on your local machine.
+ 2. Spin up the containers for only **ONE** of the following environments:
 
-**IMPORTANT**: You can only use **ONE** environment. In case you have launched the development containers and want to switch to production or vise versa, remove all containers and their volumes and then follow the steps provided for the other environment.
+    **Important note**: In case you have launched the development containers and want to switch to production or vise versa, remove all containers and their volumes and then follow the steps provided for the other environment.
+
 
 ### For Development
 
@@ -40,7 +42,7 @@ To run unit tests:
 To stop all containers:
 
     docker compose stop
-    
+
 To remove all containers and their associated volumes:
 
     docker compose down -v
@@ -66,4 +68,5 @@ To stop all containers:
 To remove all containers and their associated volumes:
 
     docker compose -f docker-compose.prod.yml down -v
+
 
