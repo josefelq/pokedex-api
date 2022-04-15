@@ -31,10 +31,6 @@ To spin up the containers:
 
     docker compose up -d
 
-If this is your first time launching this environment, you will have to run migrations:
-
-    docker compose exec web python manage.py migrate --noinput
-
 At this point you can start interacting with the API, please view the swagger documentation on: http://localhost:8000/docs/
 
 To run unit tests:
@@ -44,6 +40,7 @@ To run unit tests:
 To stop all containers:
 
     docker compose stop
+    
 To remove all containers and their associated volumes:
 
     docker compose down -v
@@ -56,15 +53,7 @@ To spin up the containers:
 
     docker compose -f docker-compose.prod.yml up -d
 
-If this is your first time running this environment, you will have to run migrations:
-
-    docker compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput    
-
 At this point you can start interacting with the API, please view the swagger documentation on: http://localhost:1337/docs/
-
-To collect static files:
-
-    docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
 
 To run unit tests:
 
@@ -73,6 +62,7 @@ To run unit tests:
 To stop all containers:
 
     docker compose -f docker-compose.prod.yml stop
+
 To remove all containers and their associated volumes:
 
     docker compose -f docker-compose.prod.yml down -v
