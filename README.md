@@ -29,21 +29,21 @@ Pokedex API is a fully featured RESTful API that tracks your favorite Pokemons! 
 
 ### For Development
 
-To spin up the containers:
+**To spin up the containers:**
 
     docker compose up -d
 
 At this point you can start interacting with the API, please view the swagger documentation on: http://localhost:8000/docs/
 
-To run unit tests:
+**To run unit tests:**
 
     docker compose exec web pytest
 
-To stop all containers:
+**To stop all containers:**
 
     docker compose stop
 
-To remove all containers and their associated volumes:
+**To remove all containers and their associated volumes:**
 
     docker compose down -v
 
@@ -51,21 +51,21 @@ To remove all containers and their associated volumes:
 
 ### For Production
 
-To spin up the containers:
+**To spin up the containers:**
 
     docker compose -f docker-compose.prod.yml up -d
 
 At this point you can start interacting with the API, please view the swagger documentation on: http://localhost:1337/docs/
 
-To run unit tests:
+**To run unit tests:**
 
     docker compose -f docker-compose.prod.yml exec web pytest
 
-To stop all containers:
+**To stop all containers:**
 
     docker compose -f docker-compose.prod.yml stop
 
-To remove all containers and their associated volumes:
+**To remove all containers and their associated volumes:**
 
     docker compose -f docker-compose.prod.yml down -v
 
