@@ -12,6 +12,8 @@ CustomUser = get_user_model()
 
 
 class UserPokemonViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    """A simple ViewSet for viewing and editing pokemons discovered by a user."""
+
     serializer_class = PokemonSerializer
     permission_classes = [IsAuthenticated]
 
@@ -28,7 +30,6 @@ class PokemonViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing pokemons.
     """
-    
 
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Pokemon.objects.all().order_by("-created_at")
@@ -41,6 +42,8 @@ class PokemonViewSet(viewsets.ModelViewSet):
 
 
 class RegisterViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
+    """A simple ViewSet for registering users into our application."""
+
     permission_classes = [AllowAny]
     queryset = CustomUser.objects.all()
     serializer_class = RegisterSerializer
@@ -48,6 +51,7 @@ class RegisterViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
 
 class GetRandomNumberView(views.APIView):
     def get(self, request):
+        """Endpoint that fetches and returns a random number from randomnumberapi"""
         res = requests.get(
             "http://www.randomnumberapi.com/api/v1.0/random?min=1&max=1000&count=1"
         )

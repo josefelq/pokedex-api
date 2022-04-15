@@ -9,16 +9,19 @@ CustomUser = get_user_model()
 
 class PokemonSerializer(serializers.ModelSerializer):
     def validate_height_cm(self, value):
+        # Validate that height is a positive integer
         if value <= 0:
             raise serializers.ValidationError("Height in cm must be a positive number")
         return value
 
     def validate_weight_kg(self, value):
+        # Validate that weight is a positive integer
         if value <= 0:
             raise serializers.ValidationError("Weight in kg must be a positive number")
         return value
 
     def create(self, validated_data):
+        # Add user context to pokemon
         validated_data["discovered_by"] = self.context["request"].user
         return Pokemon.objects.create(**validated_data)
 
@@ -26,18 +29,22 @@ class PokemonSerializer(serializers.ModelSerializer):
         model = Pokemon
         exclude = ["discovered_by"]
 
+
 class PokemonUpdateSerializer(serializers.ModelSerializer):
     def validate_height_cm(self, value):
+        # Validate that height is a positive integer
         if value <= 0:
             raise serializers.ValidationError("Height in cm must be a positive number")
         return value
 
     def validate_weight_kg(self, value):
+        # Validate that weight is a positive integer
         if value <= 0:
             raise serializers.ValidationError("Weight in kg must be a positive number")
         return value
 
     def update(self, instance, validated_data):
+        # Update all fields except name
         instance.description = validated_data.get("description", instance.description)
         instance.height_cm = validated_data.get("height_cm", instance.height_cm)
         instance.weight_kg = validated_data.get("weight_kg", instance.weight_kg)
@@ -50,8 +57,8 @@ class PokemonUpdateSerializer(serializers.ModelSerializer):
         exclude = ["discovered_by", "name"]
 
 
-
 class RegisterSerializer(serializers.ModelSerializer):
+    """Serializer used to create a user. Requires only email and password."""
 
     email = serializers.EmailField(
         required=True, validators=[UniqueValidator(queryset=CustomUser.objects.all())]
@@ -65,6 +72,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = ["email", "password"]
 
     def create(self, validated_data):
+        # Create a custom user with email and password provided
         user = CustomUser.objects.create(email=validated_data["email"])
         user.set_password(validated_data["password"])
         user.save()
