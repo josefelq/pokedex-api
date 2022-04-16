@@ -1,6 +1,8 @@
 from rest_framework import viewsets, mixins, views
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import (
+    IsAuthenticated,
+)
 from .permissions import IsOwnerOrReadOnly
 import requests
 from .models import Pokemon
@@ -44,12 +46,14 @@ class PokemonViewSet(viewsets.ModelViewSet):
 class RegisterViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
     """A simple ViewSet for registering users into our application."""
 
-    permission_classes = [AllowAny]
+    authentication_classes = []
     queryset = CustomUser.objects.all()
     serializer_class = RegisterSerializer
 
 
 class GetRandomNumberView(views.APIView):
+    authentication_classes = []
+
     def get(self, request):
         """Endpoint that fetches and returns a random number from randomnumberapi"""
         res = requests.get(

@@ -7,11 +7,15 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
     Assumes the model instance has a `discovered_by` attribute.
     """
 
-    def has_object_permission(self, request, view, obj):
-        # Read permissions are allowed to any request,
-        # so we'll always allow GET, HEAD or OPTIONS requests.
+    def has_permission(self, request, view) -> bool:
+        """Permissions for list methods."""
         if request.method in permissions.SAFE_METHODS:
             return True
+        return request.user.is_authenticated
 
+    def has_object_permission(self, request, view, obj):
+        """Permissions used for single object."""
+        if request.method in permissions.SAFE_METHODS:
+            return True
         # Instance must have an attribute named `discovered_by`.
         return obj.discovered_by == request.user

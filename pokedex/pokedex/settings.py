@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "api",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,26 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Pokedex API",
+    "DESCRIPTION": """Welcome to the Pokedex API!\n 
+    In case you want to POST, PUT, PATCH or DELETE pokemons follow these steps:\n
+    1. Create an account using an email and password (/api/register)\n
+    2. Login and obtain an access token with the account you just created (/api/login)\n
+    3. Click on the authorize button (top right) and paste the access token you obtained
+    in the last step.\n
+    4. You can now ADD, UPDATE and DELETE pokemon. Have Fun!\n
+    Important Note: access tokens are revoked after 20 minutes, you must repeat steps 2 and 3
+    again if this happens.""",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    # OTHER SETTINGS
 }
 
 # Access and refresh token both last 20 minutes
