@@ -3,7 +3,7 @@
 
 Pokedex API is a fully featured RESTful API that tracks your favorite Pokemons!  
 
-A live version is up and running here: http://ec2-18-234-189-95.compute-1.amazonaws.com/docs/
+A live version is up and running here: http://ec2-34-224-27-53.compute-1.amazonaws.com/docs/
 
 If you want to run it on your machine, keep reading.
 
