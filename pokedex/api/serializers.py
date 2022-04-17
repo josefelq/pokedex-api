@@ -6,8 +6,12 @@ from .models import Pokemon
 
 CustomUser = get_user_model()
 
+class RandomNumberSerializer(serializers.Serializer):
+    """ Serializer that describes result for get random number endpoint """
+    data = serializers.IntegerField(min_value=1, max_value=1000)
 
 class PokemonSerializer(serializers.ModelSerializer):
+    """ Pokemon serializer """
     def validate_height_cm(self, value):
         # Validate that height is a positive integer
         if value <= 0:
@@ -31,6 +35,7 @@ class PokemonSerializer(serializers.ModelSerializer):
 
 
 class PokemonUpdateSerializer(serializers.ModelSerializer):
+    """ Pokemon update serializer """
     def validate_height_cm(self, value):
         # Validate that height is a positive integer
         if value <= 0:

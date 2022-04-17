@@ -6,7 +6,7 @@ from rest_framework.permissions import (
 from .permissions import IsOwnerOrReadOnly
 import requests
 from .models import Pokemon
-from .serializers import PokemonSerializer, RegisterSerializer, PokemonUpdateSerializer
+from .serializers import PokemonSerializer, RegisterSerializer, PokemonUpdateSerializer,RandomNumberSerializer
 
 from django.contrib.auth import get_user_model
 
@@ -53,6 +53,7 @@ class RegisterViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
 
 class GetRandomNumberView(views.APIView):
     authentication_classes = []
+    serializer_class = RandomNumberSerializer
 
     def get(self, request):
         """Endpoint that fetches and returns a random number from randomnumberapi"""

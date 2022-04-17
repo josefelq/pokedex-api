@@ -29,7 +29,7 @@ If you want to run it on your machine, keep reading.
  1. Clone the repository on your local machine.
  2. Spin up the containers for only **ONE** of the following environments:
 
-    **Important note**: In case you have launched the development containers and want to switch to production or vise versa, remove all containers and their volumes and then follow the steps provided for the other environment.
+    **Important note**: In case you have launched the development containers and want to switch to production or vise versa, remove all containers with their respective volumes and images, and then run the containers for the other environment.
 
 
 ### For Development
@@ -48,9 +48,9 @@ At this point you can start interacting with the API, please view the swagger do
 
     docker compose stop
 
-**To remove all containers and their associated volumes:**
+**To remove all containers with their associated volumes and images:**
 
-    docker compose down -v
+    docker compose down -v --rmi all
 
 
 
@@ -70,8 +70,8 @@ At this point you can start interacting with the API, please view the swagger do
 
     docker compose -f docker-compose.prod.yml stop
 
-**To remove all containers and their associated volumes:**
+**To remove all containers with their associated volumes and images:**
 
-    docker compose -f docker-compose.prod.yml down -v
+    docker compose -f docker-compose.prod.yml down -v --rmi all
 
 
