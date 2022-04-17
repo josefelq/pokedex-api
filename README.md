@@ -24,10 +24,6 @@ If you want to run it on your machine, keep reading.
  - Swagger Docs
  - Production environment using NGINX + Gunicorn.
 
-## Notes
-- For **POST**, **PUT**, **PATCH** methods a Bearer Token is required: register then login and add the access_token provided to authorization header.
-- Valid types for pokemon can be seen here: https://pokemon.fandom.com/wiki/Types or in the enum section of the swagger docs. All uppercase. 
-
 ## Installation
 
  1. Clone the repository on your local machine.
